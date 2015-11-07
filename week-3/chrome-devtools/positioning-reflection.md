@@ -1,12 +1,12 @@
-![screencap 1](imgs/1.png)
-![screencap 2](imgs/2.png)
-![screencap 3](imgs/3.png)
-![screencap 4](imgs/4.png)
-![screencap 5](imgs/5.png)
-![screencap 6](imgs/6.png)
-![screencap 7](imgs/7.png)
-![screencap 8](imgs/8.png)
-![screencap 9](imgs/9.png)
+![screencap 1](../imgs/1.png)
+![screencap 2](../imgs/2.png)
+![screencap 3](../imgs/3.png)
+![screencap 4](../imgs/4.png)
+![screencap 5](../imgs/5.png)
+![screencap 6](../imgs/6.png)
+![screencap 7](../imgs/7.png)
+![screencap 8](../imgs/8.png)
+![screencap 9](../imgs/9.png)
 
 **How can you use Chrome's DevTools inspector to help you format or position elements?**
 

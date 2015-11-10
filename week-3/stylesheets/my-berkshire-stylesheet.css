@@ -1,1 +1,137 @@
+/* 1. Change the following colors
 
+Text: #000080 (navy)
+Links: #800080 (purple)
+Visited links : #ff0000 (red)
+background: #ffffff (white)
+
+2. Position the links into two columns
+
+Make the description text smaller and the normal font color
+
+3. Format the heading
+
+Bold the text
+Change the size
+Center the text
+Put the line breaks in (use CSS rather than HTML)
+Make the "B" and "H" larger than the other letters in "Berkshire Hathaway"
+4. Format the Geico Section to look the same as the web page
+
+5. Add horizontal lines using CSS
+
+(There should be four). Do not use the <hr> tag.
+
+6. Did we forget anything? Does your site look like theirs? */
+
+
+body,
+html {
+margin:0;
+padding:0;
+color:#000;
+background:#fff;
+}
+
+h1, h2, h3, h4, h5, h6, p, li, div {
+	color: #000080;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+	-webkit-margin-before: .2em;
+  -webkit-margin-after: .2em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+a {
+	color: #800080;
+}
+
+a:visited {
+	color: #ff0000;
+}
+
+#wrap {
+	width: 98%;
+	margin: 0 auto;
+}
+
+#col-wrap {
+width:80%;
+margin:0 auto;
+}
+
+.left-col {
+float:left;
+width:500px;
+}
+
+.right-col {
+float:right;
+width:500px;
+}
+
+.clear {
+	clear: both;
+}
+
+header {
+	text-align: center;
+}
+
+.title {
+	font-size: 1.8em;
+}
+
+div.line-break {
+	background-color: gray;
+	height: 1px;
+	width: 100%;
+	margin: 20px auto;
+}
+
+li {
+	margin-bottom: 35px;
+}
+
+li > p.subtext {
+	font-size: .8em;
+	margin-top: 5px;
+}
+
+#geico {
+	text-align: center;
+}
+
+#comments p {
+	font-size: .9em;
+}
+
+#copy-right p {
+	font-size: .8em;
+}
+
+/*
+
+What is important to know when linking an external file (like a stylesheet) to an HTML file?
+Use a relative path!  And declare what type of file you are linking to. 
+
+What tricks did you use to help you with positioning? How hard was it to get the site as you wanted it?
+Using extra divs as wraps, and then positioning divs inside of that in order to get the look that one wants.  It wasn't too hard, but once one gets more complicated (floats + positioning + display modes), then things get difficult.  
+
+What CSS did you use to modify the element style (like size, color, etc.)?
+I used font-size, text-align, text-transform, colors, etc.
+
+Did you modify the HTML to include classes or ids? If so, which did you choose and why? If you didn't, how would you know which one to add to your HTML?
+Yep, I added classes for elements that needed repeat styling, and ids just to identify particular sections of code that I wanted to pick out (mostly sections).
+
+When you compared your site to the actual code base, which do you think had cleaner code that followed best practices and why?
+Our code was cleaner.  The original Berkshire site uses paragraph elements as formatting, and has a million of them.  (Also looks like they don't even use lists).  And, on top of that their css is all in the actual html.  It's either not good coding practices or just a much, much older website.  
+
+
+
+
+
+
+*/

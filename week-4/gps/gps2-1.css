@@ -1,0 +1,41 @@
+/* * {
+    border: 1px solid red;
+} */
+
+body {
+    background-color: lightgrey;
+}
+
+* {
+    font-family: "Arial", sans-serif;
+}
+
+header {
+    text-align: center;
+    background-color: white;
+    padding: 5px;
+    margin: 10px;
+}
+
+header h1 {
+    text-transform: uppercase;
+}
+
+
+.column-1,
+.column-2 {
+  width: 45%;
+  margin: 0 10px;
+  float: left;
+  background-color: lightblue;
+}
+
+
+footer {
+    clear: both;
+    background-color: white;
+    text-align: center;
+    padding: 10px;
+    margin: 20px 10px 10px 10px;
+    float: left;
+}

@@ -1,28 +1,4 @@
-/* 1. Change the following colors
 
-Text: #000080 (navy)
-Links: #800080 (purple)
-Visited links : #ff0000 (red)
-background: #ffffff (white)
-
-2. Position the links into two columns
-
-Make the description text smaller and the normal font color
-
-3. Format the heading
-
-Bold the text
-Change the size
-Center the text
-Put the line breaks in (use CSS rather than HTML)
-Make the "B" and "H" larger than the other letters in "Berkshire Hathaway"
-4. Format the Geico Section to look the same as the web page
-
-5. Add horizontal lines using CSS
-
-(There should be four). Do not use the <hr> tag.
-
-6. Did we forget anything? Does your site look like theirs? */
 
 
 body,

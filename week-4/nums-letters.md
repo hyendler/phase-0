@@ -1,3 +1,8 @@
+Links to exercises:
+[Defining Variables](https://github.com/hyendler/phase-0/blob/master/week-4/defining-variables.rb) 
+[Simple String](https://github.com/hyendler/phase-0/blob/master/week-4/simple_string.rb)
+[Basic Math](https://github.com/hyendler/phase-0/blob/master/week-4/basic-math.rb)
+
 **What does puts do?**
 
 Puts returns no value and prints the output to the console on a new line.  Is useful sometimes for double checking to see whether or not the correct item is being returned. 
@@ -19,3 +24,29 @@ puts 365*24
 puts 60*24*365*10
 
 ```
+
+
+**How does Ruby handle addition, subtraction, multiplication, and division of numbers?**
+
+Ruby handles all the basic math operators pretty succinctly and very close to math.
+
+**What is the difference between integers and floats?**
+
+Integers are whole numbers and floats are decimals.
+
+**What is the difference between integer and float division?**
+
+Integer division is when dividing by whole numbers, float division is when you divide by decimals and have to deal with floating point numbers.
+
+**What are strings? Why and when would you use them?**
+
+Strings are series of characters, and are for writing anything to the screen.
+
+**What are local variables? Why and when would you use them?**
+
+Local variables are used within a method, and you would use them if you just need a variable inside of a method.
+
+**How was this challenge? Did you get a good review of some of the basics?**
+Yep.  Pretty basic.
+
+

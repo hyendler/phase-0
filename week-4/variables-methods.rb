@@ -43,4 +43,11 @@ What was confusing about this material? What made sense?
 
 Type conversion is a little tougher in Ruby.  I used to do Java where it was always expliciting defined, and as such I didn't have to remember which type was what when.
 
+
+LINKS TO THIS WEEK'S EXERCISES:
+https://github.com/hyendler/phase-0/blob/master/week-4/address/my_solution.rb
+https://github.com/hyendler/phase-0/blob/master/week-4/math/my_solution.rb
+
+
+
 =end

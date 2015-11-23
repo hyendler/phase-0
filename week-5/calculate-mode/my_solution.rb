@@ -66,7 +66,7 @@
 
 # 1. Initial Solution
 
-# def find(array)
+# def mode(array)
 #   hash = Hash.new(0)
 #   array.each do |item|
 #     hash[item] += 1
@@ -123,14 +123,14 @@
 
 # 3. Refactored Solution
 
-def find(array)
+def mode(array)
   hash = Hash.new(0)
   array.each do |item|
     hash[item] += 1
   end 
   max_value = hash.values.max
-  new_array = hash.select { |key, value| value == max_quantity}.keys
-  p new_array
+  new_array = hash.select { |key, value| value == max_value}.keys
+  new_array
 end
 
 

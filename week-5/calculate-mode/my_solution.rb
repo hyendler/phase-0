@@ -137,3 +137,16 @@ end
 
 
 # 4. Reflection
+# Which data structure did you and your pair decide to implement and why?
+# We decided to use a hash to figure out number of times an item appears, because hashes allow for objectal relationships.
+
+# Were you more successful breaking this problem down into implementable pseudocode than the last with a pair? 
+# It took a moment to figure out the pseudocode, but it was a trickier problem.
+
+# What issues/successes did you run into when translating your pseudocode to code?
+# There were some issues that stemmed from how to iterate through a hash, and specifically hash keys vs. values, but the great thing is that I was able to figure out thanks to Google.
+
+# What methods did you use to iterate through the content? Did you find any good ones when you were refactoring? Were they difficult to implement?
+# Each, and select.  Originally I had used the manual way of building a max value logic problem.
+
+

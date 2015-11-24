@@ -65,3 +65,18 @@ print_account_groups(accountability_groups)
 # end
 
 # split_array(array_of_students)
+
+# What was the most interesting and most difficult part of this challenge?
+# Figuring out how to best maximize the number of 4 or 5 groups - I ended up using the properties of the modulus after numbers have been divided by 5.  I am taking a discrete math class right now, so using those principles helped me come up with this solution.
+
+# Do you feel you are improving in your ability to write pseudocode and break the problem down?
+# yup!  So useful.  I like writing pseudocode not like a paragraph, but in the actual format of my code, but in English.
+
+# Was your approach for automating this task a good solution? What could have made it even better?
+# I feel like there might be an even simpler way to do this and account for all the different cases of a number mod 5, but I wasn't quite able to figure it out.
+
+# What data structure did you decide to store the accountability groups in and why?
+# I decided on an array, because there was no need for a key value pair because of an absence for any need of a relationship between one of the list items and something else.
+
+# What did you learn in the process of refactoring your initial solution? Did you learn any new Ruby methods?
+#  I tried to refactor my solution to use a shorter written version of the each_slice method but unfortunately it didn't work for some reason.

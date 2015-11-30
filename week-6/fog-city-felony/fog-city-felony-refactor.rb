@@ -1,17 +1,21 @@
+# Completed by Hanah Yendler for DBC Phase 0.
+# This took me [16 hours] to complete (still not finished, want to fix/add new features).
+
 # Notes:
 # Game play will be a text based console RPG crime noir game.
-# BIG THANKS TO: Ariella Yendler, for helping me write the script.
+# BIG THANKS TO: Ariella Yendler, for helping me write the script.  Also thanks to P.G. Wodehouse for some inspirational insults for the death scene.
 # Game play description, as from Learn Ruby the Hard Way: 
 # http://learnrubythehardway.org/book/ex43.html
 # "The game will be more like a Zork or Adventure type game with text outputs and funny ways to die. The game will involve an engine that runs a map full of rooms or scenes. Each room will print its own description when the player enters it and then tell the engine what room to run next out of the map."
-# Note on refactored code: I first tried to write the code myself, not based on the textbook's code.
+# Note on the code: I first tried to write the code for the game play/map/engine by myself, not based on the textbook's code. However, I couldn't riddle out the logic behind/get it to work, so I ended up using the code from the textbook.  However, I have  written out the Map and Engine classes out in pseudocode (this particular pseudocode is located next the classes themselves, not in my actual pseudocode located directly below- that is evidence my ramblings while trying to figure out the logic on my own.) in order to better understand the mechanics.  
 
 # Pseudocode
 # Scenes:
 # Palace Hotel
 # Corner Store
 # Dark Alley
-# Top of Coit Tower
+# Death
+# Safe 
 # Golden Gate Bridge
 
 # Game set up:
@@ -36,7 +40,7 @@
 # 	Inspect
 # 	Interrogate
 # 	gets to choose from a weapon (gun, knife, pack of a cigarettes)
-# Top of Coit Tower
+# Safe
 # 	Riddle or puzzle or lock, with guesses
 # 	If get it, then get inside
 # 	inspect, find a person
@@ -51,28 +55,33 @@
 
 # MAP
 # purpose of map: to build a scene list, to export to the engine to 'play'
-# 
-# SCENE
-# purpose of scene?
-# 
 # Can write this two different ways - a general map/game engine, or one specifically for this particular game.  Start with writing one for this particular game, and then see what I can do.
 
+# SCENE
+# purpose of scene?
+
+# ENGINE
 # how to play a scene:
 # create a new engine (engine is a class that has a play method)
 # engine or map needs to create new instances of each scene, that then can be passed around.
 # for example, if a_map = Map.new
 # pass engine.play(an instance of a scene class)
-# 
-
-
-
+#access the specific scene object and gets it to play
+#but then a thing will be returned, so how to capture that?  Where does the return go?
+# when one has two classes, and one class initializes another class and then a method from that and then something is returned, how do you capture a returned thing?
+# nvm, got it.  when scene.enter is called, that in and of itself will return the next scene.  the only problem then is to have it recursively called onto itself. aka scene.enter.enter.enter etc. 
+# note: doesn't work. because enter is not a local variable method for corner_store for DarkAlley object.  Should have known.
+# for each scene in the map, have scene enter.  when it returns the next scene, put that inside of map and have it recursively do it again?
+# only need to pass map the start scene, because after that it should be self population.
+# when engine.play is started, load opening scene.  Then that opening scene will return something, 
+#
 
 class Scene
 	def enter()
 	end
 end
 
-
+# purpose of detective class (which doesn't exist in the Learn Ruby the Hard way game) is to store information on what weapon the player chooses for the detective, and then call it later.  In order for this to be accessible to multiple different objects, it gets initialized to a global variable. (I don't know if this the best way to do this, but it's the only way I could get it to work)
 
 class Detective 
 	def initialize
@@ -89,43 +98,51 @@ class Detective
 end
 
 
-$detective_bronson = Detective.new
-
 class Death < Scene
+	@@quips = [
+			"What's better than an a live detective that doesn't do his job is a dead detective.",
+			"No wonder you didn't get into the police academy in the first place, detective.",
+			"You're no better at detective work than a slab of gorgonzola.",
+			"Before you enter the pearly gates, it is my pleasure to inform you that your detective work, or lack-there-of, is that of a popeyed bleater."
+		]
 	def enter()
+		puts "You have died."
+		puts @@quips[rand(0..(@@quips.length-1))]
+		return "dark_alley"
 	end
 end
+
 
 class DarkAlley < Scene
 	def enter()
 		puts "Detective Bronson wakes up, if that's a word for what it is. It's more like staggering out of the blessed murky unconsciousness into a hang-over that starts in his head and ends somewhere in his lower back. He's sprawled on the cold ground of an abandoned alley. The streetlights at the end prick his eyes as the world swims into view. He'd rather go back to unconsciousness. Bronson takes stock. His gun is gone, he has a blistering headache, and he is most definitely out of cigarettes. \"Damn,\" he says softly."
-		# sleep 5
+		sleep 5
 		puts "He gets up, and the look of something wet on the wall catches his eye. It's blood."
-		# sleep 5
+		sleep 2
 		puts "Action(s): investigate"
 
 		action = $stdin.gets.chomp
 
 		if action == "investigate"
 			puts "Bronson takes a step closer to investigate the blood spatter. It is most definitely fresh.  Kneeling down, he finds casings on the ground - .45's and with the little groove on one side that only his gun makes. Did he shoot someone? He can't remember. He swallows down the panic like cheap whiskey and glances around. There's a man in a white waiter's jacket smoking at the end of the alley."
-			# sleep 5
+			sleep 2
 			puts "Action(s): interrogate"
 
 			action = $stdin.gets.chomp
 			
 			if action == "interrogate"
 				puts "\"Hey, you. Did you see anything that just happened?\" asks Bronson."
-				# sleep 2
+				sleep 2
 				puts "The waiter eyes him, and slowly puffs his cigarette."
-				# sleep 2
+				sleep 2
 				puts "\"Also, any possibility you got an extra one of those?\" Bronson adds."
-				# sleep 2
+				sleep 2
 				puts "\"Nope, fresh out,\" the waiter states lazily. Bronson can see the bulge of a pack in his pocket. Goddamn liar."
-				# sleep 2
+				sleep 2
 				puts "\"Well,\" he growls, \"You better start talking before I make trouble for your restaurant right over there and have this alley crawling with cops.\""
-				# sleep 2
+				sleep 2
 				puts "\"Fine. I 'eard some scuffing and a gunshot so came ou'side, and saw you passed ou' on the ground.  And I decided tha was a perfect time for a smoke\"."
-				# sleep 2
+				sleep 2
 				puts "\'Asshole,\' thinks Bronson. \"Thank you,\" he mutters, and trudges out of the alley."
 				return "corner_store"
 			end
@@ -224,11 +241,22 @@ end
 
 class Safe < Scene
 	def enter()
-		puts "You get 5 guesses to unlock the safe.  It is a 3 digit combination, with each digit between 0-9."
+		puts "You get 5 guesses to unlock the safe.  It is a 3 digit combination, with each digit between 1-9. The order does not matter, but enter the numbers with no spaces inbetween (ie \"111\", NOT \"1, 1, 1\")."
 		counter = 0
-		number = $stdin.gets.chomp
 		while counter < 3
-			if number == "123"
+			array = []
+			puts "Enter a number"
+			number = $stdin.gets.chomp
+			array = number.split("")
+			new_array = []
+			array.each { |i| new_array.push(i.to_i) }
+			sum = 0
+			new_array.each { |s| sum += s}
+			puts sum
+			multiply = 1
+			new_array.each { |m| multiply *= m}
+			puts multiply
+			if sum == multiply
 				puts "The safe is unlocked!  Bronson grabs the documents and goes out the living room, only to find Gia mysteriously gone from the hotel room. He pulls a cigarette from the pack on the table and leaves the hotel to go the Golden Gate Bridge. In any case, he still has to make the drop."
 				break
 			else
@@ -262,8 +290,8 @@ class GoldenGateBridge < Scene
 			elsif weapon == "knife"
 				puts "Bronson knows he doesn't have as much of a chance with a knife, but he takes it out anyways."
 				random_gen = Random.new
-				random1 = random_gen.ran(0..1.0)
-				random2 = random_gen.ran(0..0.5)
+				random1 = random_gen.rand(0..1.0)
+				random2 = random_gen.rand(0..0.5)
 				if random1 < 0.5
 					puts "Bronson takes a slash, but Armo is too quick.  Armo manages a good slug at his face and Bronson feels his nose break and a bit woozy."
 					puts "Action(s): fight, dodge"
@@ -309,7 +337,8 @@ class GoldenGateBridge < Scene
 			puts "\"Dirty work?\" Bronson asks quizzically."
 			puts "\"Why yes, see?  I dispatched Luciano in order to take over his business, and the only thing left in my way was getting a hold of these documents and getting rid of Armo, and you did both.  And only because of your help, I'm not going to kill you.\"  She takes out a gun---his gun, Bronson's own damn gun--and shoots him in the shoulder. As he falls to his knees, swearing, she steps around him. He hears the revving of a car engine a moment later. The cherry red Chrysler slows as it passes him. \"I'll give you a good recommendation to my friends!\" Gia tells him, and speeds away to Marin County."
 			puts "\"Damn,\" whispers Bronson. \"I could really use a pack of cigarettes.\""
-			return "end"
+			puts "The End"
+			return "the end"
 		elsif win == 0
 			"You died, you sorry sucker."
 			return "death"
@@ -319,33 +348,6 @@ class GoldenGateBridge < Scene
 	end
 end
 
-
-
-class Engine
-
-	def initialize(scene_map)
-		@scene_map = scene_map
-	end
-
-	def play
-		
-		#access the specific scene object and gets it to play
-		#but then a thing will be returned, so how to capture that?  Where does the return go?
-		# when one has two classes, and one class initializes another class and then a method from that and then something is returned, how do you capture a returned thing?
-		# nvm, got it.  when scene.enter is called, that in and of itself will return the next scene.  the only problem then is to have it recursively called onto itself. aka scene.enter.enter.enter etc. 
-		# note: doesn't work. because enter is not a local variable method for corner_store for DarkAlley object.  Should have known.
-		# for each scene in the map, have scene enter.  when it returns the next scene, put that inside of map and have it recursively do it again?
-		current_scene = @scene_map.opening_scene #DarkAlley.new
-		last_scene = @scene_map.next_scene("finished")
-
-		while current_scene != last_scene
-			next_scene_name = current_scene.enter 
-			current_scene = @scene_map.next_scene(next_scene_name)
-		end
-
-		current_scene.enter
-	end
-end
 
 class Map
 	@@scenes = {
@@ -367,27 +369,51 @@ class Map
 	def opening_scene
 		next_scene(@start_scene)
 	end
-
-
 end
 
 
+class Engine
+
+	def initialize(scene_map)
+		@scene_map = scene_map
+	end
+
+	def play
+		
+		current_scene = @scene_map.opening_scene #DarkAlley.new
+		last_scene = @scene_map.next_scene("the end")
+
+		while current_scene != last_scene
+			next_scene_name = current_scene.enter 
+			current_scene = @scene_map.next_scene(next_scene_name)
+		end
+
+		# current_scene.enter
+	end
+end
+
+# Pseudocode explaining Map and Engine
+# Map creates key 'codes' for creating new objects of the scene classes when called, and the rest of Map serves to convert key 'codes' returned to Engine from a Scene object and convert it to the correct new scene object.  It also sets the opening scene, which is the string passed into Map when Map is first initialized.
+# Engine gets passed an object of the Map class that was initialized, which contains the key code conversion hash, the start scene, and the associated methods.  From that, Engine sets the current scene to the opening scene (taken from Map), and sets the last scene to the scene object that will return "the end".  And then the method has a stop break, in that while the current scene does not equal the last scene value, the current scene gets set to the next scene object from the returned key code from the previous scene object.  The scene object gets 'played out' on line 115 when enter method is called on the current scene.
+
+
+
+$detective_bronson = Detective.new
 a_map = Map.new("dark_alley")
 game_engine = Engine.new(a_map)
 game_engine.play
 
 
 
-# only need to pass map the start scene, because after that it should be self population.
-# when engine.play is started, load opening scene.  Then that opening scene will return something, 
-# 
-
-
-
 # Additional game features that I want to implement:
+# refactor combination lock code
+# being able to have more advanced user input - ie if there is a misspelling, then prompt the user for another entry, or if there is capitalization or extra spaces, etc. 
 # being able to hit enter to load the next puts line
 # blinking in console as a loader/waiting indication?  Is that even possible?
-# allow someone to choose their own name, and give them options to do so otherwise.
+# allow someone to choose their own detective name for the story, and give them options to do so otherwise.
+# possibly need to add one more scene (dark alley returns)
+# add secret shortcodes in the game
+# Also, do I need to add more to the scene object or is it fine as is?
 
 # REFLECTION
 # ARGV, $stdin, STDIN
@@ -396,6 +422,7 @@ game_engine.play
 # But wait.  What's the difference between STDIN and $stdin?  STDIN is a constant, and $stdin is a global variable, but what is the functional difference between the two? Well, because $stdin is a variable, it can get reassigned.  STDIN can get reassigned as well, but will have no effect unless a 3rd party method uses STDIN.  
 # As such, use $stdin.gets.chomp in order to make sure that the user input is being read.
 # And as a general note, standard input is the steam where input for a computer is held.  The input is stored in a variable.
+
 
 # Class vs. module
 # Module is a block of code that has functions or variables in it, and you can save it as an individual file and you can import that file using require, and call functions or variables using the dot operator.  (could also probably not need to use require and just have a module within the file and use dot notation after to access functions/variables inside.)
@@ -418,9 +445,9 @@ game_engine.play
 # Wouldn't it be better to put super() before initializing the child's variables?  What's the difference?
 
 # Composition
-# Rather than rely on implicit inheritance, can just use other classes or modules inside of 
-# 
-# 
-# 
-# 
-# 
+
+# Instance Variables
+
+# Global Variables
+
+# Exiting code

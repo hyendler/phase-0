@@ -26,7 +26,7 @@
 #  
 
 def is_power_of_two?(num)
-	if num == 1
+	if num == 1 || num == 0
 		return true
     elsif num % 2 == 0
 		is_power_of_two?(num/2)

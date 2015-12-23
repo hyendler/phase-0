@@ -79,65 +79,62 @@ var officers = {
 }
 
 
-//Pseudocode
+
+
+//   for (var student in votes) { //Alex
+//     var studentsVote = votes[student]; //studentsVote is the object following Alex, containing {president:Bob, vicePresident: Devin, etc;}
+//     for (var officer in studentsVote) { //officer is president, vicepresident, etc
+//       var name = studentsVote[officer]; //name is the value of the officer key, so aka Bob, Devin, etc
+//       for (position in voteCount) {
+//         var positionVoteNames = voteCount[position];
+//         if (positionVoteNames.hasOwnProperty(name)){
+//           positionVoteNames[name] += 1 ;
+//         } else {
+//           positionVoteNames[name] = 1;
+//         }
+//       }
+//     }
+//   }
+// return voteCount;
+// }
 
 
 var tallyVotes = function(votes, voteCount){
-  for (position in voteCount) { //position is president: {}
+  for (var position in voteCount) { //position is president: {}
     var positionVoteNames = voteCount[position]; // positionVoteNames is {}
-    for (student in votes) { //student is "Alex": { president: "Bob", ... }
+    for (var student in votes) { //student is "Alex": { president: "Bob", ... }
       var studentsVote = votes[student]; //studentsVote is { president: "Bob", ... }
-      var name = studentsVote[position];
-
-      for ( officer in studentsVote) { // officer is president, vicepresident, etc
-        if (positionVoteNames.hasOwnProperty(name))
-      }
-      
-
-      studentsVote[position]
-    }
-  }
-
-
-
-
-
-  for (var student in votes) { //Alex
-    var studentsVote = votes[student]; //studentsVote is the object following Alex, containing {president:Bob, vicePresident: Devin, etc;}
-    for (var officer in studentsVote) { //officer is president, vicepresident, etc
-      var name = studentsVote[officer]; //name is the value of the officer key, so aka Bob, Devin, etc
-      for (position in voteCount) {
-        var positionVoteNames = voteCount[position];
-        if (positionVoteNames.hasOwnProperty(name)){
-          positionVoteNames[name] += 1 ;
+        var name = studentsVote[position]; //name is Bob, etc
+        if (positionVoteNames.hasOwnProperty(name)) {
+          positionVoteNames[name] += 1;
         } else {
           positionVoteNames[name] = 1;
         }
-      }
     }
   }
-return voteCount;
+  return voteCount;
 }
 
 var talliedVotes = tallyVotes(votes, voteCount);
-//console.log(talliedVotes);
-// var determineWinner = function(officers, talliedVotes) {
-//   var frontrunner = "";
-//   var maxVotes = 0;
-//   for (position in talliedVotes) {
-//     var  positionVoteNames = talliedVotes[position];
-//     for (name in positionVoteNames) {
-//       if (positionVoteNames[name] > maxVotes) {
-//         maxVotes = positionVoteNames[name];
-//         frontrunner = name;
-//       }
-//     }
-//     officers[position] = frontrunner;
-//   }
-//   return officers;
-// }
 
-// console.log(determineWinner(officers, talliedVotes));
+var determineWinner = function(officers, talliedVotes) {
+  var frontrunner = "";
+  for (position in talliedVotes) {
+     var maxVotes = 0;
+    var  positionVoteNames = talliedVotes[position];
+    for (name in positionVoteNames) {
+      if (positionVoteNames[name] > maxVotes) {
+        maxVotes = positionVoteNames[name];
+        frontrunner = name;
+      }
+       // console.log(maxVotes + " " + name)
+    }
+    officers[position] = frontrunner;
+  }
+  return officers;
+}
+
+console.log(determineWinner(officers, talliedVotes));
 
 
 // __________________________________________
@@ -150,7 +147,7 @@ var talliedVotes = tallyVotes(votes, voteCount);
 
 // __________________________________________
 // Reflection
-
+// Took me a long time to solve, due to the looping within looping concept, and making sure everything was working the way it should be.
 
 
 

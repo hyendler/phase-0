@@ -1,3 +1,75 @@
+function enterPressed(callback) {
+	if (e.keyCode=13) {
+	    // remove things
+
+	    // callback would do the custom stuff
+		callback();
+	} else {
+		return true;
+	};
+}
+
+
+
+function checkKey1(e) {
+  enterPressed(function(){
+	if (input.value == "investigate") {
+
+	// stop the continuation of any other form activity
+		storyBox.removeChild(p3);
+		storyBox.removeChild(p4);
+		storyBox.removeChild(form);
+
+		// create new paragraph and node text elements
+		var p5 = document.createElement("p");
+		var node5 = document.createTextNode("Bronson takes a step closer to investigate the blood spatter. It is most definitely fresh.  Kneeling down, he finds casings on the ground - .45's and with the little groove on one side that only his gun makes. Did he shoot someone? He can't remember. He swallows down the panic like cheap whiskey and glances around. There's a man in a white waiter's jacket smoking at the end of the alley.");
+
+		//append nodes to paragraph, append paragraph to story box
+		p5.appendChild(node5);
+		storyBox.appendChild(p5);
+
+	} else {
+		// wrong input inputted
+	}
+  })
+};
+
+
+
+function checkKey(e){
+	enterPressed(function(){
+
+		// remove previous elements
+		storyBox.removeChild(p1);
+		storyBox.removeChild(p2);
+
+		// create new paragraph and node text elements
+		var p3 = document.createElement("p");
+		var node3 = document.createTextNode("He gets up, and the look of something wet on the wall catches his eye. It's blood.");
+		var p4 = document.createElement("p");
+		var node4 = document.createTextNode("Action(s): investigate");
+
+		//append nodes to paragraph, append paragraphs to story box
+		p3.appendChild(node3);
+		p4.appendChild(node4);
+		storyBox.appendChild(p3);
+		storyBox.appendChild(p4);
+
+		// create a form element, append it
+		var form = document.createElement("form");
+		var input = document.createElement("input");
+		storyBox.appendChild(form);
+		input.type = "text";
+		input.name = "action";
+		input.className = "user-input";
+		form.appendChild(input);
+
+		// add event listener
+		input.addEventListener("keydown", checkKey1, false);
+	});
+};	
+
+
 function DarkAlley() {
 	this.enter = function() {
 		// change background image
@@ -24,63 +96,7 @@ function DarkAlley() {
 		window.addEventListener("keydown", checkKey, false);
 		
 		// if key is enter, then continue with rest of the story
-		function checkKey(e){
-			if (e.keyCode =="13") {
-
-				// remove previous elements
-				storyBox.removeChild(p1);
-				storyBox.removeChild(p2);
-
-				// create new paragraph and node text elements
-				var p3 = document.createElement("p");
-				var node3 = document.createTextNode("He gets up, and the look of something wet on the wall catches his eye. It's blood.");
-				var p4 = document.createElement("p");
-				var node4 = document.createTextNode("Action(s): investigate");
-
-				//append nodes to paragraph, append paragraphs to story box
-				p3.appendChild(node3);
-				p4.appendChild(node4);
-				storyBox.appendChild(p3);
-				storyBox.appendChild(p4);
-
-				// create a form element, append it
-				var form = document.createElement("form");
-				var input = document.createElement("input");
-				storyBox.appendChild(form);
-				input.type = "text";
-				input.name = "action";
-				input.className = "user-input";
-				form.appendChild(input);
-
-				// add event listener
-				input.addEventListener("keydown", checkKey1, false);
-
-				function checkKey1(e) {
-					if (e.keyCode=13) {
-						if (input.value == "investigate") {
-
-						// stop the continuation of any other form activity
-							storyBox.removeChild(p3);
-							storyBox.removeChild(p4);
-							storyBox.removeChild(form);
-
-							// create new paragraph and node text elements
-							var p5 = document.createElement("p");
-							var node5 = document.createTextNode("Bronson takes a step closer to investigate the blood spatter. It is most definitely fresh.  Kneeling down, he finds casings on the ground - .45's and with the little groove on one side that only his gun makes. Did he shoot someone? He can't remember. He swallows down the panic like cheap whiskey and glances around. There's a man in a white waiter's jacket smoking at the end of the alley.");
-
-							//append nodes to paragraph, append paragraph to story box
-							p5.appendChild(node5);
-							storyBox.appendChild(p5);
-
-						} else {
-							// wrong input inputted
-						}
-					} else {
-						return true;
-					};
-				};
-			};
-		};	
+		
 	};
 }
 
